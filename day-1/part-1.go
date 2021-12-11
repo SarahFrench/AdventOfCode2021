@@ -7,23 +7,23 @@ import (
 	"strconv"
 )
 
-func main(){
+func main() {
 	file, err := os.Open("./input.txt")
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer file.Close()
-	
-    scanner := bufio.NewScanner(file)
-	
+
+	scanner := bufio.NewScanner(file)
+
 	var depthMeasurements []int
 	index := 0
 	increaseCount := 0
 	for scanner.Scan() {
 		// Pull next measurement from input file
-		line:= scanner.Text()
-		number, err:= strconv.Atoi(line)
-		if err!=nil{
+		line := scanner.Text()
+		number, err := strconv.Atoi(line)
+		if err != nil {
 			log.Fatal(err)
 		}
 
@@ -37,12 +37,12 @@ func main(){
 		// Add measurement to record
 		depthMeasurements = append(depthMeasurements, number)
 		index++
-    }
+	}
 
 	log.Printf("Read %d measurements", index)
 	log.Printf("Found %d increases on previous measurements", increaseCount)
 
-    if err := scanner.Err(); err != nil {
-        log.Fatal(err)
-    }
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
 }

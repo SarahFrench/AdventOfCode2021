@@ -20,9 +20,9 @@ func NewWindowGroup(numWindows, windowSize int) WindowGroup {
 		wg.Windows = append(wg.Windows, Window{
 			number: i + 1,
 			offset: i,
-			size: windowSize,
+			size:   windowSize,
 		})
-		log.Printf("[WINDOW GROUP] Added the #%d Window to the group, with size %d and offset %d", i + 1, windowSize, i)
+		log.Printf("[WINDOW GROUP] Added the #%d Window to the group, with size %d and offset %d", i+1, windowSize, i)
 	}
 	return wg
 }
@@ -34,7 +34,7 @@ type Window struct {
 	Numbers []int
 }
 
-func (w *Window) Add(position, number int)(reportSum bool, sum int){
+func (w *Window) Add(position, number int) (reportSum bool, sum int) {
 	// Return early if window hasn't reached starting point
 	if position < w.offset {
 		log.Printf("[WINDOW #%d] Not ready to begin calculating using number at position %d because my offset is %d", w.number, position, w.offset)
@@ -53,7 +53,7 @@ func (w *Window) Add(position, number int)(reportSum bool, sum int){
 		w.Numbers = []int{}
 
 	}
-	return reportSum, sum 
+	return reportSum, sum
 }
 
 func (w *Window) getSum() int {
@@ -64,15 +64,15 @@ func (w *Window) getSum() int {
 	return sum
 }
 
-func main(){
+func main() {
 	file, err := os.Open("./input.txt")
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer file.Close()
-	
-    scanner := bufio.NewScanner(file)
-	
+
+	scanner := bufio.NewScanner(file)
+
 	index := 0
 	var increaseCount int
 	var windowSums []int
@@ -80,14 +80,14 @@ func main(){
 
 	for scanner.Scan() {
 		// Pull next measurement from input file
-		line:= scanner.Text()
-		number, err:= strconv.Atoi(line)
-		if err!=nil{
+		line := scanner.Text()
+		number, err := strconv.Atoi(line)
+		if err != nil {
 			log.Fatal(err)
 		}
-		
+
 		// Pass measurement to each window
-		for i := 0; i<len(wg.Windows); i++ {
+		for i := 0; i < len(wg.Windows); i++ {
 			addSum, sum := wg.Windows[i].Add(index, number)
 			if addSum {
 				// Check if new sum is larger than the last
@@ -99,14 +99,14 @@ func main(){
 				windowSums = append(windowSums, sum)
 			}
 		}
-	
+
 		index++
-    }
+	}
 
 	log.Printf("Read %d measurements", index)
 	log.Printf("Found %d increases on previous measurements", increaseCount)
 
-    if err := scanner.Err(); err != nil {
-        log.Fatal(err)
-    }
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
 }
