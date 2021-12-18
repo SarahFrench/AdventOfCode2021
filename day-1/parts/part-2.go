@@ -1,4 +1,4 @@
-package main
+package parts
 
 import (
 	"bufio"
@@ -64,8 +64,9 @@ func (w *Window) getSum() int {
 	return sum
 }
 
-func main() {
-	file, err := os.Open("./input.txt")
+func SolutionTwo(fileName string) (int) {
+
+	file, err := os.Open(fileName)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -103,10 +104,8 @@ func main() {
 		index++
 	}
 
-	log.Printf("Read %d measurements", index)
-	log.Printf("Found %d increases on previous measurements", increaseCount)
-
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
+	return increaseCount
 }
