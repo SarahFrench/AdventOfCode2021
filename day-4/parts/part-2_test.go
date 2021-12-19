@@ -4,11 +4,11 @@ import (
 	"testing"
 )
 
-func TestSolutionOne(t *testing.T) {
+func TestSolutionTwo(t *testing.T) {
 	fileName := "./test-input.txt"
 
-	expectedScore := 4512
-	finalScore := SolutionOne(fileName)
+	expectedScore := 1924
+	finalScore := SolutionTwo(fileName)
 
 	if finalScore != expectedScore {
 		t.Errorf("Incorrect score. Got: %d; wanted %d", finalScore, expectedScore)

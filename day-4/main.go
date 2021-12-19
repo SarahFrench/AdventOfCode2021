@@ -11,4 +11,8 @@ func main() {
 	log.Printf("Part 1")
 	finalScore := parts.SolutionOne("./input.txt")
 	log.Printf("\t answer: score %d\n", finalScore)
+	// Part 2
+	log.Printf("Part 2")
+	finalScore = parts.SolutionTwo("./input.txt")
+	log.Printf("\t answer: score %d\n", finalScore)
 }
